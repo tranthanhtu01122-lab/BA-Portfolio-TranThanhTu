@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_library_book_tree" model="ir.ui.view">
+        <field name="name">library.book.tree</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="author"/>
+                <field name="quantity"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_library_book" model="ir.actions.act_window">
+        <field name="name">Quản lý Sách</field>
+        <field name="res_model">library.book</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_library_root" name="Thư viện" sequence="10"/>
+    <menuitem id="menu_library_book" name="Sách" parent="menu_library_root" action="action_library_book"/>
+</odoo>

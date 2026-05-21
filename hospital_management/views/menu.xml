@@ -1,0 +1,5 @@
+<odoo>
+<menuitem id="menu_hospital_root" name="Quản lý Bệnh viện" sequence="10"/>
+<menuitem id="menu_hospital_doctor" name="Bác sĩ" parent="menu_hospital_root" action="action_hospital_doctor" sequence="10"/>
+<menuitem id="menu_hospital_patient" name="Bệnh nhân" parent="menu_hospital_root" action="action_hospital_patient" sequence="20"/>
+</odoo>

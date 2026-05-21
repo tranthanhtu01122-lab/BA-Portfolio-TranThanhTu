@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="book_detail_template" name="Chi tiết sách">
+        <t t-call="website.layout">
+            <div class="container mt-5">
+                <h1 t-field="book.name"/>
+                <p>Tác giả: <span t-field="book.author"/></p>
+                <a t-attf-href="/library/borrow/{{book.id}}" class="btn btn-primary">Đăng ký mượn</a>
+            </div>
+        </t>
+    </template>
+
+    <template id="borrow_form_template" name="Form Mượn">
+        <t t-call="website.layout">
+            <div class="container mt-5">
+                <h2>Đăng ký mượn: <t t-esc="book.name"/></h2>
+                <form action="/library/borrow/submit" method="post">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    <input type="hidden" name="book_id" t-att-value="book.id"/>
+                    
+                    <div class="alert alert-info">
+                        Thời điểm đăng ký: <t t-esc="datetime.datetime.now().strftime('%d/%m/%Y %H:%M:%S')"/>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Họ tên:</label>
+                        <input type="text" name="name" class="form-control" t-att-value="values.get('name')"/>
+                        <span class="text-danger" t-esc="errors.get('name')"/>
+                    </div>
+                    <div class="mb-3">
+                        <label>Email:</label>
+                        <input type="text" name="email" class="form-control" t-att-value="values.get('email')"/>
+                        <span class="text-danger" t-esc="errors.get('email')"/>
+                    </div>
+                    <button type="submit" class="btn btn-success">Gửi yêu cầu</button>
+                </form>
+            </div>
+        </t>
+    </template>
+
+    <template id="thank_you_template" name="Cảm ơn">
+        <t t-call="website.layout">
+            <div class="container mt-5 text-center">
+                <h1>Gửi yêu cầu thành công!</h1>
+                <p>Mã đơn: #REQ-<t t-esc="request_id"/></p>
+                <p>Đăng ký lúc: <span t-esc="request_date.strftime('%d/%m/%Y %H:%M:%S') if request_date else ''"/></p>
+                <a href="/library/books" class="btn btn-primary">Về trang chủ</a>
+            </div>
+        </t>
+    </template>
+</odoo>

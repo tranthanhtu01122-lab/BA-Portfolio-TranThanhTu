@@ -1,0 +1,49 @@
+<odoo>
+<record id="view_hospital_patient_tree" model="ir.ui.view">
+<field name="name">hospital.patient.tree</field>
+<field name="model">hospital.patient</field>
+<field name="arch" type="xml">
+<tree string="Danh sách Bệnh nhân">
+<field name="name"/>
+<field name="age"/>
+<field name="disease"/>
+<field name="doctor_id"/>
+</tree>
+</field>
+</record>
+<record id="view_hospital_patient_form" model="ir.ui.view">
+<field name="name">hospital.patient.form</field>
+<field name="model">hospital.patient</field>
+<field name="arch" type="xml">
+<form string="Bệnh nhân">
+<sheet>
+<div class="oe_title">
+<h1>
+<field name="name" placeholder="Tên bệnh nhân..."/>
+</h1>
+</div>
+<notebook>
+<page string="Thông tin chi tiết" name="info">
+<group>
+<group string="Cơ bản">
+<field name="birth_year"/>
+<field name="age" readonly="1"/>
+</group>
+<group string="Bệnh lý">
+<field name="disease"/>
+<field name="doctor_id"/>
+<field name="need_parent" readonly="1"/>
+</group>
+</group>
+</page>
+</notebook>
+</sheet>
+</form>
+</field>
+</record>
+<record id="action_hospital_patient" model="ir.actions.act_window">
+<field name="name">Bệnh nhân</field>
+<field name="res_model">hospital.patient</field>
+<field name="view_mode">tree,form</field>
+</record>
+</odoo>
